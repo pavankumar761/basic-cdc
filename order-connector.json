@@ -11,7 +11,16 @@
     "topic.prefix": "dbserver1",
     "database.include.list": "orders_db",
     "table.include.list": "orders_db.orders",
-    "database.history.kafka.bootstrap.servers": "kafka:9092",
-    "database.history.kafka.topic": "schema-changes.orders"
+    "schema.history.internal.kafka.bootstrap.servers": "kafka:9093",
+    "schema.history.internal.kafka.topic": "schema-changes-orders",
+    "snapshot.mode": "initial",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter.schemas.enable": "false",
+    "transforms": "unwrap",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.unwrap.add.fields": "op,table",
+    "decimal.handling.mode": "double"
   }
 }
